@@ -13,10 +13,28 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        String url = "http://webservices.amazon.com/onca/xml?AWSAccessKeyId=AKIAIRCWYMWRAZWBRPRQ&AssociateTag=%20michaellesnia-21%20&Condition=All&Keywords=scala&Operation=ItemSearch&ResponseGroup=Images&SearchIndex=All&Service=AWSECommerceService&Timestamp=2013-12-09T05%3A27%3A27.000Z&Version=2011-08-01&Signature=uH7pLYmIvxf5MbT1nj2Or4ztZoMa7IvGmXZmEGRMMAc%3D";
+    public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
+        SignedRequestsHelper helper = SignedRequestsHelper.getInstance(
+                "webservices.amazon.com",
+                "AKIAIRCWYMWRAZWBRPRQ",
+                "c33JOwt4tXCVDBxfpxs7YuceXv0U4LurFKxi6zNa");
+
+        Map<String, String> query = new HashMap<>();
+        query.put("Operation", "ItemSearch");
+        query.put("Keywords", "Scala");
+        query.put("SearchIndex", "Books");
+        query.put("ResponseGroup", "BrowseNodes");
+        query.put("Version", "2011-08-01");
+        query.put("AssociateTag", "michaellesnia-21");
+
+        String url = helper.sign(query);
+        System.out.println(url);
 
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(url);
@@ -25,6 +43,7 @@ public class Main {
         StringWriter writer = new StringWriter();
         IOUtils.copy(response.getEntity().getContent(), writer);
         String s = writer.toString();
+        System.out.println(s);
         System.out.println(prettyFormat(s, 2));
     }
 
@@ -41,7 +60,10 @@ public class Main {
             transformer.transform(xmlInput, xmlOutput);
             return xmlOutput.getWriter().toString();
         } catch (Exception e) {
-            throw new RuntimeException(e); // simple exception handling, please review it
+            //throw new RuntimeException(e); // simple exception handling, please review it
+            return "<exception name=\"" + e.getMessage() + "\"/>";
         }
     }
+
+
 }
