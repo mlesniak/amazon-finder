@@ -29,9 +29,12 @@ public class Main {
         query.put("Operation", "ItemSearch");
         query.put("Keywords", "Scala");
         query.put("SearchIndex", "Books");
-        query.put("ResponseGroup", "BrowseNodes");
+        query.put("ResponseGroup", "OfferListings");
         query.put("Version", "2011-08-01");
         query.put("AssociateTag", "michaellesnia-21");
+        query.put("MaximumPrice", "10000");
+        query.put("MinimumPrice", "0");
+
 
         String url = helper.sign(query);
         System.out.println(url);
