@@ -5,15 +5,16 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-        AmazonRequestBuilder builder = AmazonRequestBuilder.init()
+        AmazonRequest request = AmazonRequestBuilder.init()
                 .addKeywords("Scala")
                 .addSearchIndex(SearchIndex.Books)
                 .addResponseGroup(ResponseGroup.Images)
                 .addMaximumPrice(10000)
-                .addMinimumPrice(1000);
+                .addMinimumPrice(1000)
+                .build();
 
-        while (builder.hasNextPage()) {
-            String result = builder.nextPage();
+        while (request.hasNextPage()) {
+            String result = request.nextPage();
             for (Map.Entry<String, String> entry : Filter.filterImages(result).entrySet()) {
                 System.out.println(entry.getKey() + "\t" + entry.getValue());
             }
