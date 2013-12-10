@@ -1,9 +1,3 @@
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -15,39 +9,19 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-        SignedRequestsHelper helper = SignedRequestsHelper.getInstance(
-                "webservices.amazon.de",
-                "AKIAIRCWYMWRAZWBRPRQ",
-                "c33JOwt4tXCVDBxfpxs7YuceXv0U4LurFKxi6zNa");
+        String result = AmazonRequestBuilder.init()
+                .addKeywords("Scala")
+                .addSearchIndex(SearchIndex.Books)
+                .addResponseGroup(ResponseGroup.Offers)
+                .addMaximumPrice(4999)
+                .addMinimumPrice(1000)
+                .execute();
 
-        Map<String, String> query = new HashMap<>();
-        query.put("Operation", "ItemSearch");
-        query.put("Keywords", "Scala");
-        query.put("SearchIndex", "Books");
-        query.put("ResponseGroup", "OfferListings");
-        query.put("Version", "2011-08-01");
-        query.put("AssociateTag", "michaellesnia-21");
-        query.put("MaximumPrice", "10000");
-        query.put("MinimumPrice", "0");
-
-
-        String url = helper.sign(query);
-        System.out.println(url);
-
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
-
-        HttpResponse response = client.execute(request);
-        StringWriter writer = new StringWriter();
-        IOUtils.copy(response.getEntity().getContent(), writer);
-        String s = writer.toString();
-        System.out.println(s);
-        System.out.println(prettyFormat(s, 2));
+        System.out.println(result);
+        System.out.println(prettyFormat(result, 2));
     }
 
     // http://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java/1264912#1264912
