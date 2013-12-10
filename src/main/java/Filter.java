@@ -2,9 +2,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,11 +13,7 @@ public class Filter {
         Map<String, String> map = new HashMap<>();
 
         try {
-            // General document builder.
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(new ByteArrayInputStream(xml.getBytes()));
-
+            Document doc = Utils.toDocument(xml);
             NodeList items = doc.getElementsByTagName("Item");
             for (int i = 0; i < items.getLength(); i++) {
                 Node node = items.item(i);

@@ -1,19 +1,22 @@
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-        String result = AmazonRequestBuilder.init()
+        AmazonRequestBuilder builder = AmazonRequestBuilder.init()
                 .addKeywords("Scala")
                 .addSearchIndex(SearchIndex.Books)
                 .addResponseGroup(ResponseGroup.Images)
                 .addMaximumPrice(10000)
-                .addMinimumPrice(1000)
-                .execute();
+                .addMinimumPrice(1000);
 
-        System.out.println(result);
-        System.out.println(Utils.prettyFormatXML(result, 2));
-        System.out.println(Filter.filterImages(result));
+        while (builder.hasNextPage()) {
+            String result = builder.nextPage();
+            for (Map.Entry<String, String> entry : Filter.filterImages(result).entrySet()) {
+                System.out.println(entry.getKey() + "\t" + entry.getValue());
+            }
+        }
     }
 }
