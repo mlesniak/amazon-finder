@@ -21,7 +21,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
         SignedRequestsHelper helper = SignedRequestsHelper.getInstance(
-                "webservices.amazon.com",
+                "webservices.amazon.de",
                 "AKIAIRCWYMWRAZWBRPRQ",
                 "c33JOwt4tXCVDBxfpxs7YuceXv0U4LurFKxi6zNa");
 
