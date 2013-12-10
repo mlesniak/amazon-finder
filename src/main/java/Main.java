@@ -7,12 +7,13 @@ public class Main {
         String result = AmazonRequestBuilder.init()
                 .addKeywords("Scala")
                 .addSearchIndex(SearchIndex.Books)
-                .addResponseGroup(ResponseGroup.Offers)
-                .addMaximumPrice(4999)
+                .addResponseGroup(ResponseGroup.Images)
+                .addMaximumPrice(10000)
                 .addMinimumPrice(1000)
                 .execute();
 
         System.out.println(result);
         System.out.println(Utils.prettyFormatXML(result, 2));
+        System.out.println(Filter.filterImages(result));
     }
 }
