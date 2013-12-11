@@ -1,3 +1,6 @@
+package com.mlesniak.amazon;
+
+import com.mlesniak.Utils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

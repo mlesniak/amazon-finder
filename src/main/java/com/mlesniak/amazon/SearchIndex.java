@@ -1,3 +1,5 @@
+package com.mlesniak.amazon;
+
 public enum SearchIndex {
     Appareal,
     Automotive,

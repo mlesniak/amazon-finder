@@ -1,3 +1,5 @@
+package com.mlesniak.amazon;
+
 public enum ResponseGroup {
     Images,
     ItemAttributes,

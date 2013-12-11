@@ -1,3 +1,5 @@
+package com.mlesniak.amazon;
+
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

@@ -1,3 +1,6 @@
+package com.mlesniak.amazon;
+
+import com.mlesniak.Utils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
