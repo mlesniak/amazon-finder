@@ -48,7 +48,7 @@ public class ItemConverter {
         XPath xpath = XPathFactory.newInstance().newXPath();
 
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));
-        String title = xpath.compile("./Title").evaluate(node);
+        String title = xpath.compile("./ItemAttributes/Title").evaluate(node);
         String imageURL = toURL(xpath.compile("./MediumImage/URL").evaluate(node));
 
         int price = 0;
