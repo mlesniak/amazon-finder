@@ -1,5 +1,7 @@
-package com.mlesniak;
+package com.mlesniak.web;
 
+import com.mlesniak.web.HomePage;
+import com.mlesniak.web.WicketApplication;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
