@@ -12,7 +12,6 @@ public class Main {
         AmazonRequest request = AmazonRequestBuilder.init()
                 .addKeywords("Scala")
                 .addSearchIndex(SearchIndex.Books)
-                .addResponseGroup(ResponseGroup.Medium, ResponseGroup.Reviews)
                 .addMaximumPrice(10000)
                 .addMinimumPrice(1000)
                 .build();

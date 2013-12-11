@@ -13,7 +13,8 @@ public class AmazonRequestBuilder {
     private Map<String, String> params = new HashMap<>();
 
     private AmazonRequestBuilder() {
-        // Empty.
+        ResponseGroup[] arg = {ResponseGroup.Medium, ResponseGroup.Reviews};
+        responseGroup =org.apache.commons.lang3.StringUtils.join(arg, ",");
     }
 
     public static AmazonRequestBuilder init() {
