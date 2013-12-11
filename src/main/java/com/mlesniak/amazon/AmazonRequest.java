@@ -18,7 +18,8 @@ import java.util.Map;
 public class AmazonRequest {
     private Map<String, String> params = new HashMap<>();
     private int totalPages;
-    private int currentPage = -1;
+    private int currentPage = 1;
+    private boolean totalPagesUpdated = false;
 
     // Package private.
     AmazonRequest(Map<String, String> params) {
@@ -34,7 +35,8 @@ public class AmazonRequest {
                     "c33JOwt4tXCVDBxfpxs7YuceXv0U4LurFKxi6zNa");
             String url = helper.sign(params);
             result = executeRequest(url);
-            if (currentPage == -1) {
+            if (!totalPagesUpdated) {
+                totalPagesUpdated = true;
                 determineMaximumPages(result);
             }
         } catch (Exception e) {
@@ -61,8 +63,8 @@ public class AmazonRequest {
     }
 
     public String nextPage() {
-        currentPage++;
         params.put("ItemPage", Integer.toString(currentPage));
+        currentPage++;
         return execute();
     }
 
