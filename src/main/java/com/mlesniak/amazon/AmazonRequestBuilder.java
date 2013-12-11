@@ -7,7 +7,7 @@ public class AmazonRequestBuilder {
     private String operation = "ItemSearch";
     private String keywords;
     private SearchIndex searchIndex;
-    private ResponseGroup responseGroup;
+    private String responseGroup;
     private Integer maximumPrice;
     private Integer minimumPrice;
     private Map<String, String> params = new HashMap<>();
@@ -35,8 +35,8 @@ public class AmazonRequestBuilder {
         return this;
     }
 
-    public AmazonRequestBuilder addResponseGroup(ResponseGroup arg) {
-        this.responseGroup = arg;
+    public AmazonRequestBuilder addResponseGroup(ResponseGroup ... arg) {
+        this.responseGroup  = org.apache.commons.lang3.StringUtils.join(arg, ",");
         return this;
     }
 
@@ -66,7 +66,7 @@ public class AmazonRequestBuilder {
             params.put("SearchIndex", searchIndex.toString());
         }
         if (responseGroup != null) {
-            params.put("ResponseGroup", responseGroup.toString());
+            params.put("ResponseGroup", responseGroup);
         }
         if (minimumPrice != null) {
             params.put("MinimumPrice", minimumPrice.toString());
