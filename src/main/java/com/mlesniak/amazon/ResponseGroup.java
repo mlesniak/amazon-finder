@@ -18,5 +18,8 @@ public enum ResponseGroup {
     VariationImages,
     VariationMatrix,
     VariationSummary,
-    Variations
+    Variations,
+    Medium,
+    Large,
+    Small
 }
