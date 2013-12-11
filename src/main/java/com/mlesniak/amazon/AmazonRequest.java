@@ -26,7 +26,7 @@ public class AmazonRequest {
         this.params = params;
     }
 
-    public String execute() {
+    private String execute() {
         String result = "";
         try {
             SignedRequestsHelper helper = SignedRequestsHelper.getInstance(
