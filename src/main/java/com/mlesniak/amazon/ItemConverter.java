@@ -15,6 +15,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemConverter {
+    public static List<Item> convertFull(AmazonRequest request) {
+        List<Item> items = new LinkedList<>();
+
+        while (request.hasNextPage()) {
+            String xml = request.nextPage();
+            items.addAll(convert(xml));
+        }
+
+        return items;
+    }
+
     public static List<Item> convert(String xml) {
         List<Item> items = new LinkedList<>();
 

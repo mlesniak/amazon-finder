@@ -17,10 +17,7 @@ public class Main {
                 .addMinimumPrice(1000)
                 .build();
 
-        String page = request.nextPage();
-        //        System.out.println(Utils.prettyFormatXML(page, 4));
-        List<Item> items = ItemConverter.convert(page);
-
+        List<Item> items = ItemConverter.convertFull(request);
         for (Item item : items) {
             System.out.println(item);
         }
