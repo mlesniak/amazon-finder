@@ -19,7 +19,8 @@ public class HomePage extends WebPage {
             @Override
             protected void onSubmit() {
                 System.out.println(query);
-                performQuery(query);
+                List<Item> items = performQuery(query);
+                setResponsePage(new ResultPage(items));
             }
         };
 
