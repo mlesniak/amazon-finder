@@ -17,5 +17,7 @@ public class ItemComponent extends Panel {
         image.add(new AttributeModifier("src", item.getImageUrl()));
         add(image);
         add(new Label("title", item.getTitle()));
+        add(new Label("price", item.getPrice()));
+
     }
 }
