@@ -10,8 +10,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import java.util.List;
 
 public class HomePage extends WebPage {
-	public HomePage(final PageParameters parameters) {
-		super(parameters);
+    public HomePage(final PageParameters parameters) {
+        super(parameters);
 
         TextField<String> keyword = new TextField<>("keyword");
         final Query query = new Query();
@@ -36,7 +36,8 @@ public class HomePage extends WebPage {
                 .addMinimumPrice(1000)
                 .build();
 
-        List<Item> items = ItemConverter.convertFull(request);
+        List<Item> items = ItemConverter.convert(request.nextPage());
+        //        List<Item> items = ItemConverter.convertFull(request);
         for (Item item : items) {
             System.out.println(item);
         }
