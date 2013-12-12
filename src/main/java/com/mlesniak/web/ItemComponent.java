@@ -4,6 +4,7 @@ import com.mlesniak.amazon.Item;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
 public class ItemComponent extends Panel {
@@ -13,11 +14,13 @@ public class ItemComponent extends Panel {
         super(id);
         this.item = item;
 
-        Image image = new Image("image", "");
-        image.add(new AttributeModifier("src", item.getImageUrl()));
-        add(image);
         add(new Label("title", item.getTitle()));
         add(new Label("price", item.getPrice()));
 
+        Image image = new Image("image", "");
+        image.add(new AttributeModifier("src", item.getImageUrl()));
+        ExternalLink link = new ExternalLink("link", item.getUrl());
+        link.add(image);
+        add(link);
     }
 }
