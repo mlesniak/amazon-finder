@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-	<head>
-		<meta charset="utf-8" />
-		<title>Amazon product finder</title>
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
-	<body>
-        <form method="POST">
-            <label for="keyword">Keyword</label>
-            <input type="text" id="keyword"/>
-        </form>
-	</body>
+<head>
+    <meta charset="utf-8"/>
+    <title>Amazon product finder</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet"/>
+</head>
+<body>
+<!--Change to POST later-->
+<form wicket:id="form" method="GET">
+    <label for="keyword">Keyword</label>
+    <input wicket:id="keyword" type="text" id="keyword"/>
+</form>
+</body>
 </html>
