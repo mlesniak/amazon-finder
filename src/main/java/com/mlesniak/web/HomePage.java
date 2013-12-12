@@ -36,8 +36,7 @@ public class HomePage extends WebPage {
                 .addMinimumPrice(1000)
                 .build();
 
-        List<Item> items = ItemConverter.convert(request.nextPage());
-        //        List<Item> items = ItemConverter.convertFull(request);
+        List<Item> items = ItemConverter.convertFull(request);
         for (Item item : items) {
             System.out.println(item);
         }
