@@ -2,13 +2,13 @@ package com.mlesniak.amazon;
 
 import java.io.Serializable;
 
-public class Item implements Serializable {
+public class AmazonItem implements Serializable {
     private String title;
     private int price;
     private String url;
     private String imageUrl;
 
-    public Item(String title, int price, String url, String imageUrl) {
+    public AmazonItem(String title, int price, String url, String imageUrl) {
         this.title = title;
         this.price = price;
         this.url = url;
@@ -33,7 +33,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "AmazonItem{" +
                 "title='" + title + '\'' +
                 ", price=" + price +
                 ", url='" + url + '\'' +

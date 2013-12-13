@@ -19,8 +19,8 @@ public class HomePage extends WebPage {
             @Override
             protected void onSubmit() {
                 System.out.println(query);
-                List<Item> items = performQuery(query);
-                setResponsePage(new ResultPage(items));
+                List<AmazonItem> amazonItems = performQuery(query);
+                setResponsePage(new ResultPage(amazonItems));
             }
         };
 
@@ -28,7 +28,7 @@ public class HomePage extends WebPage {
         form.add(keyword);
     }
 
-    public List<Item> performQuery(Query query) {
+    public List<AmazonItem> performQuery(Query query) {
         AmazonRequest request = AmazonRequestBuilder.init()
                 .addKeywords(query.getKeyword())
                 .addSearchIndex(SearchIndex.Books)
@@ -36,10 +36,10 @@ public class HomePage extends WebPage {
                 .addMinimumPrice(1000)
                 .build();
 
-        List<Item> items = ItemConverter.convertFull(request);
-        for (Item item : items) {
-            System.out.println(item);
+        List<AmazonItem> amazonItems = ItemConverter.convertFull(request);
+        for (AmazonItem amazonItem : amazonItems) {
+            System.out.println(amazonItem);
         }
-        return items;
+        return amazonItems;
     }
 }

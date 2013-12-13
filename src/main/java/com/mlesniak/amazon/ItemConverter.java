@@ -15,19 +15,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemConverter {
-    public static List<Item> convertFull(AmazonRequest request) {
-        List<Item> items = new LinkedList<>();
+    public static List<AmazonItem> convertFull(AmazonRequest request) {
+        List<AmazonItem> amazonItems = new LinkedList<>();
 
         while (request.hasNextPage()) {
             String xml = request.nextPage();
-            items.addAll(convert(xml));
+            amazonItems.addAll(convert(xml));
         }
 
-        return items;
+        return amazonItems;
     }
 
-    public static List<Item> convert(String xml) {
-        List<Item> items = new LinkedList<>();
+    public static List<AmazonItem> convert(String xml) {
+        List<AmazonItem> amazonItems = new LinkedList<>();
 
         try {
             Document doc = Utils.toDocument(xml);
@@ -35,16 +35,16 @@ public class ItemConverter {
 
             NodeList nodeList = (NodeList) xpath.compile("//Item").evaluate(doc, XPathConstants.NODESET);
             for (int i = 0; i < nodeList.getLength(); i++) {
-                items.add(transformItem(nodeList.item(i)));
+                amazonItems.add(transformItem(nodeList.item(i)));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        return items;
+        return amazonItems;
     }
 
-    private static Item transformItem(Node node) throws XPathExpressionException, UnsupportedEncodingException {
+    private static AmazonItem transformItem(Node node) throws XPathExpressionException, UnsupportedEncodingException {
         XPath xpath = XPathFactory.newInstance().newXPath();
 
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));
@@ -57,7 +57,7 @@ public class ItemConverter {
             price = Integer.parseInt(strPrice);
         }
 
-        return new Item(title, price, detailsURL, imageURL);
+        return new AmazonItem(title, price, detailsURL, imageURL);
     }
 
     private static String toURL(String url) throws UnsupportedEncodingException {
