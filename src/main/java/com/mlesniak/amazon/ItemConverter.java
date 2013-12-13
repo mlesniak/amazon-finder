@@ -9,6 +9,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.LinkedList;
@@ -44,7 +45,7 @@ public class ItemConverter {
         return amazonItems;
     }
 
-    private static AmazonItem transformItem(Node node) throws XPathExpressionException, UnsupportedEncodingException {
+    private static AmazonItem transformItem(Node node) throws XPathExpressionException, IOException {
         XPath xpath = XPathFactory.newInstance().newXPath();
 
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));

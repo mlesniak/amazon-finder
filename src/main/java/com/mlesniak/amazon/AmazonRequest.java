@@ -58,7 +58,7 @@ public class AmazonRequest {
         HttpGet request = new HttpGet(url);
         HttpResponse response = client.execute(request);
         StringWriter writer = new StringWriter();
-        IOUtils.copy(response.getEntity().getContent(), writer);
+        IOUtils.copy(response.getEntity().getContent(), writer, "UTF-8");
         return writer.toString();
     }
 
