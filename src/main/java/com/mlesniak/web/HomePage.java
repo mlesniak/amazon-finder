@@ -19,13 +19,17 @@ public class HomePage extends WebPage {
     public HomePage(final PageParameters parameters, List<AmazonItem> items) {
         super(parameters);
 
-        TextField<String> keyword = new TextField<>("keyword");
         final Query query = new Query();
+        System.out.println("keyword=" + parameters.get("xkeyword").toString(""));
+        query.setKeyword(parameters.get("xkeyword").toString(null));
+
+        TextField<String> keyword = new TextField<>("keyword");
         Form<Query> form = new Form<Query>("form", new CompoundPropertyModel<Query>(query)) {
             @Override
             protected void onSubmit() {
                 System.out.println(query);
                 List<AmazonItem> amazonItems = performQuery(query);
+                parameters.set("xkeyword", query.getKeyword());
                 setResponsePage(new HomePage(parameters, amazonItems));
             }
         };
@@ -50,9 +54,9 @@ public class HomePage extends WebPage {
                 .build();
 
         List<AmazonItem> amazonItems = ItemConverter.convertFull(request);
-        for (AmazonItem amazonItem : amazonItems) {
-            System.out.println(amazonItem);
-        }
+        //        for (AmazonItem amazonItem : amazonItems) {
+        //            System.out.println(amazonItem);
+        //        }
         return amazonItems;
     }
 }
