@@ -70,6 +70,6 @@ public class AmazonRequest {
 
     public boolean hasNextPage() {
         // Amazon does only allow 10 pages in pagination.
-        return currentPage <= 10;
+        return currentPage <= 10 && (totalPages == 0 || currentPage < totalPages);
     }
 }
