@@ -20,8 +20,8 @@ public class HomePage extends WebPage {
         super(parameters);
 
         final Query query = new Query();
-        System.out.println("keyword=" + parameters.get("xkeyword").toString(""));
-        query.setKeyword(parameters.get("xkeyword").toString(null));
+        query.setKeyword(parameters.get("keyword").toString(null));
+        parameters.clearNamed();
 
         TextField<String> keyword = new TextField<>("keyword");
         Form<Query> form = new Form<Query>("form", new CompoundPropertyModel<Query>(query)) {
@@ -29,7 +29,7 @@ public class HomePage extends WebPage {
             protected void onSubmit() {
                 System.out.println(query);
                 List<AmazonItem> amazonItems = performQuery(query);
-                parameters.set("xkeyword", query.getKeyword());
+                parameters.set("keyword", query.getKeyword());
                 setResponsePage(new HomePage(parameters, amazonItems));
             }
         };
