@@ -48,6 +48,7 @@ public class ItemConverter {
     private static AmazonItem transformItem(Node node) throws XPathExpressionException, IOException {
         XPath xpath = XPathFactory.newInstance().newXPath();
 
+        String asin = xpath.compile("./ASIN").evaluate(node);
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));
         String title = xpath.compile("./ItemAttributes/Title").evaluate(node);
         String imageURL = toURL(xpath.compile("./MediumImage/URL").evaluate(node));
@@ -56,9 +57,12 @@ public class ItemConverter {
         String strPrice = xpath.compile("./ItemAttributes/ListPrice/Amount").evaluate(node);
         if (!strPrice.isEmpty()) {
             price = Integer.parseInt(strPrice);
+        } else {
+            // We ignore items without a list price.
+            return null;
         }
 
-        return new AmazonItem(title, price, detailsURL, imageURL);
+        return new AmazonItem(asin, title, price, detailsURL, imageURL);
     }
 
     private static String toURL(String url) throws UnsupportedEncodingException {
