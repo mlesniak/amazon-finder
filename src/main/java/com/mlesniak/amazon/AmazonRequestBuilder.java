@@ -81,4 +81,16 @@ public class AmazonRequestBuilder {
 
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "AmazonRequestBuilder{" +
+                "operation='" + operation + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", searchIndex=" + searchIndex +
+                ", responseGroup='" + responseGroup + '\'' +
+                ", maximumPrice=" + maximumPrice +
+                ", minimumPrice=" + minimumPrice +
+                '}';
+    }
 }
