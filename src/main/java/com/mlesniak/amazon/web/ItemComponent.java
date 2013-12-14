@@ -1,6 +1,6 @@
-package com.mlesniak.web;
+package com.mlesniak.amazon.web;
 
-import com.mlesniak.amazon.AmazonItem;
+import com.mlesniak.amazon.backend.AmazonItem;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;

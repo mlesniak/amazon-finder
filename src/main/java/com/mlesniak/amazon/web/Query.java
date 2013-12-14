@@ -1,4 +1,4 @@
-package com.mlesniak.web;
+package com.mlesniak.amazon.web;
 
 import java.io.Serializable;
 

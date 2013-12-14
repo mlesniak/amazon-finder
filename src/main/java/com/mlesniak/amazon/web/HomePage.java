@@ -1,6 +1,6 @@
-package com.mlesniak.web;
+package com.mlesniak.amazon.web;
 
-import com.mlesniak.amazon.*;
+import com.mlesniak.amazon.backend.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;

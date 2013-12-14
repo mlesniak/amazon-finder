@@ -1,4 +1,4 @@
-package com.mlesniak.amazon;
+package com.mlesniak.amazon.backend;
 
 import com.mlesniak.Utils;
 import org.apache.commons.io.IOUtils;

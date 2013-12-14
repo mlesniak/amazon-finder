@@ -1,4 +1,4 @@
-package com.mlesniak.amazon;
+package com.mlesniak.amazon.backend;
 
 public enum SearchIndex {
     Appareal,

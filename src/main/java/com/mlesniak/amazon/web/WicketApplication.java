@@ -1,4 +1,4 @@
-package com.mlesniak.web;
+package com.mlesniak.amazon.web;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
