@@ -36,7 +36,10 @@ public class ItemConverter {
 
             NodeList nodeList = (NodeList) xpath.compile("//Item").evaluate(doc, XPathConstants.NODESET);
             for (int i = 0; i < nodeList.getLength(); i++) {
-                amazonItems.add(transformItem(nodeList.item(i)));
+                AmazonItem amazonItem = transformItem(nodeList.item(i));
+                if (amazonItem != null) {
+                    amazonItems.add(amazonItem);
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
