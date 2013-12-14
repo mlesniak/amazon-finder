@@ -20,14 +20,14 @@ public class ItemComponent extends Panel {
         add(new Label("price", amazonItem.getPrice()));
 
         Image image;
-        if (StringUtils.isEmpty(amazonItem.getImageUrl())) {
+        if (StringUtils.isEmpty(amazonItem.getImageURL())) {
             image = new Image("image", defaultImage);
         } else {
             image = new Image("image", "");
-            image.add(new AttributeModifier("src", amazonItem.getImageUrl()));
+            image.add(new AttributeModifier("src", amazonItem.getImageURL()));
         }
 
-        ExternalLink link = new ExternalLink("link", amazonItem.getUrl());
+        ExternalLink link = new ExternalLink("link", amazonItem.getURL());
         link.add(image);
         add(link);
     }

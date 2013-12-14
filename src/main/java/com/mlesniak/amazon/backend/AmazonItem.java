@@ -6,15 +6,15 @@ public class AmazonItem implements Serializable {
     private String asin;
     private String title;
     private int price;
-    private String url;
-    private String imageUrl;
+    private String URL;
+    private String imageURL;
 
-    public AmazonItem(String asin, String title, int price, String url, String imageUrl) {
+    public AmazonItem(String asin, String title, int price, String URL, String imageURL) {
         this.asin = asin;
         this.title = title;
         this.price = price;
-        this.url = url;
-        this.imageUrl = imageUrl;
+        this.URL = URL;
+        this.imageURL = imageURL;
     }
 
     public String getAsin() {
@@ -29,12 +29,12 @@ public class AmazonItem implements Serializable {
         return price;
     }
 
-    public String getUrl() {
-        return url;
+    public String getURL() {
+        return URL;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageURL() {
+        return imageURL;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class AmazonItem implements Serializable {
                 "asin='" + asin + '\'' +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-                ", url='" + url + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", URL='" + URL + '\'' +
+                ", imageURL='" + imageURL + '\'' +
                 '}';
     }
 
