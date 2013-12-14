@@ -50,7 +50,6 @@ public class AmazonRequest {
         Document doc = Utils.toDocument(xml);
         String pages = doc.getElementsByTagName("TotalPages").item(0).getTextContent();
         totalPages = Integer.parseInt(pages);
-        currentPage = 1;
     }
 
     private String executeRequest(String url) throws IOException {
