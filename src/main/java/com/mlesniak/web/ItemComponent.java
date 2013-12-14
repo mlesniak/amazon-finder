@@ -10,20 +10,20 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class ItemComponent extends Panel {
-    private final AmazonItem amazonItem;
+    private static final PackageResourceReference defaultImage =
+            new PackageResourceReference(ItemComponent.class, "default.png");;
 
     public ItemComponent(String id, AmazonItem amazonItem) {
         super(id);
-        this.amazonItem = amazonItem;
 
         add(new Label("title", amazonItem.getTitle()));
         add(new Label("price", amazonItem.getPrice()));
 
-        Image image = new Image("image", "");
+        Image image;
         if (StringUtils.isEmpty(amazonItem.getImageUrl())) {
-            PackageResourceReference defaultReference = new PackageResourceReference(getClass(), "default.png");
-            image = new Image("image", defaultReference);
+            image = new Image("image", defaultImage);
         } else {
+            image = new Image("image", "");
             image.add(new AttributeModifier("src", amazonItem.getImageUrl()));
         }
 
