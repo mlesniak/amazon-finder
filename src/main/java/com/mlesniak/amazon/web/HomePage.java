@@ -70,7 +70,7 @@ public class HomePage extends WebPage {
         System.out.println(builder);
         AmazonRequest request = builder.build();
 
-        List<AmazonItem> amazonItems = ItemConverter.convertFull(request);
+        List<AmazonItem> amazonItems = AmazonItemConverter.convertFull(request);
         for (AmazonItem amazonItem : amazonItems) {
             System.out.println(amazonItem);
         }

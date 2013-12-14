@@ -16,7 +16,7 @@ public class Main {
                 .addMinimumPrice(1000)
                 .build();
 
-        List<AmazonItem> amazonItems = ItemConverter.convertFull(request);
+        List<AmazonItem> amazonItems = AmazonItemConverter.convertFull(request);
         for (AmazonItem amazonItem : amazonItems) {
             System.out.println(amazonItem);
         }

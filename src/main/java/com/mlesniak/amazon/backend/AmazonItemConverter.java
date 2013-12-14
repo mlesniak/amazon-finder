@@ -15,7 +15,7 @@ import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ItemConverter {
+public class AmazonItemConverter {
     public static List<AmazonItem> convertFull(AmazonRequest request) {
         List<AmazonItem> amazonItems = new LinkedList<>();
 
