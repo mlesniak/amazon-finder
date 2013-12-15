@@ -31,6 +31,7 @@ public class AmazonRequest {
         try {
             SignedRequestsHelper helper = SignedRequestsHelper.getInstance(
                     "webservices.amazon.de",
+                    // Keys are no longer working as of 2013-12-15.
                     "AKIAIRCWYMWRAZWBRPRQ",
                     "c33JOwt4tXCVDBxfpxs7YuceXv0U4LurFKxi6zNa");
             String url = helper.sign(params);

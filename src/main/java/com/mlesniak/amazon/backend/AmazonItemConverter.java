@@ -23,6 +23,8 @@ public class AmazonItemConverter {
             String xml = request.nextPage();
             System.out.println(Utils.prettyFormatXML(xml, 4));
             amazonItems.addAll(convert(xml));
+            // For testing -- return only first page.
+            break;
         }
 
         return amazonItems;
