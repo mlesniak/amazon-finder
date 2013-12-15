@@ -14,6 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class HomePage extends WebPage {
+
+    public static final String DEFAULT_SEARCH_INDEX = "Books";
+
     public HomePage(final PageParameters parameters) {
         this(parameters, Collections.<AmazonItem>emptyList());
     }
@@ -25,6 +28,7 @@ public class HomePage extends WebPage {
         query.setKeyword(parameters.get("keyword").toString(null));
         query.setMinPrice(parameters.get("minPrice").toString(null));
         query.setMaxPrice(parameters.get("maxPrice").toString(null));
+        query.setSearchIndex(SearchIndex.valueOf(parameters.get("searchIndex").toString(DEFAULT_SEARCH_INDEX)));
         parameters.clearNamed();
 
         TextField<String> keyword = new TextField<>("keyword");
@@ -39,6 +43,7 @@ public class HomePage extends WebPage {
                 parameters.set("keyword", query.getKeyword());
                 parameters.set("minPrice", query.getMinPrice());
                 parameters.set("maxPrice", query.getMaxPrice());
+                parameters.set("searchIndex", query.getSearchIndex().toString());
                 setResponsePage(new HomePage(parameters, amazonItems));
             }
         };
@@ -60,7 +65,7 @@ public class HomePage extends WebPage {
     public List<AmazonItem> performQuery(Query query) {
         AmazonRequestBuilder builder = AmazonRequestBuilder.init()
                 .addKeywords(query.getKeyword())
-                .addSearchIndex(SearchIndex.Books);
+                .addSearchIndex(query.getSearchIndex());
 
         // TODO Error handling on parse error? In Validators?
         if (StringUtils.isNotEmpty(query.getMaxPrice())) {
