@@ -8,16 +8,16 @@
 <body>
 <!--Change to POST later-->
 <form wicket:id="form" method="GET">
-    <label for="searchIndex">group</label>
+    <label for="searchIndex"><wicket:message key="filter.group"/></label>
     <select wicket:id="searchIndex" name="searchIndex" id="searchIndex"/>
 
-    <label for="keyword">Keyword</label>
+    <label for="keyword"><wicket:message key="filter.keyword"/></label>
     <input wicket:id="keyword" type="text" id="keyword" autofocus="true"/>
-    <label for="minPrice">minPrice</label>
+    <label for="minPrice"><wicket:message key="filter.minPrice"/></label>
     <input wicket:id="minPrice" type="text" id="minPrice"/>
-    <label for="maxPrice">maxPrice</label>
+    <label for="maxPrice"><wicket:message key="filter.maxPrice"/></label>
     <input wicket:id="maxPrice" type="text" id="maxPrice">
-    <button type="submit">Submit</button>
+    <input type="submit" wicket:message='value:filter.submit'/>
 </form>
 <hr/>
 <div wicket:id="repeater">Repeater here</div>

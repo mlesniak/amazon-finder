@@ -24,6 +24,9 @@ public class HomePage extends WebPage {
     public HomePage(final PageParameters parameters, List<AmazonItem> items) {
         super(parameters);
 
+        // For testing I18N.
+        // getSession().setLocale(Locale.GERMANY);
+
         final Query query = new Query();
         query.setKeyword(parameters.get("keyword").toString(null));
         query.setMinPrice(parameters.get("minPrice").toString(null));
