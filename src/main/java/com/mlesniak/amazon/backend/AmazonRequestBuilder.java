@@ -78,6 +78,8 @@ public class AmazonRequestBuilder {
 
         params.put("Version", "2011-08-01");
         params.put("AssociateTag", "michaellesnia-21");
+        // We want full reviews.
+        params.put("TruncateReviewsAt", "0");
         // We do not want used items.
         params.put("MerchantId", "Amazon");
 
