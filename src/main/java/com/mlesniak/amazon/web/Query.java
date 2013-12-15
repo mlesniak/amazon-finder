@@ -1,11 +1,22 @@
 package com.mlesniak.amazon.web;
 
+import com.mlesniak.amazon.backend.SearchIndex;
+
 import java.io.Serializable;
 
 public class Query implements Serializable {
+    private SearchIndex searchIndex;
+
     private String keyword;
     private String minPrice;
     private String maxPrice;
+    public SearchIndex getSearchIndex() {
+        return searchIndex;
+    }
+
+    public void setSearchIndex(SearchIndex searchIndex) {
+        this.searchIndex = searchIndex;
+    }
 
     public String getMinPrice() {
         return minPrice;
@@ -34,9 +45,11 @@ public class Query implements Serializable {
     @Override
     public String toString() {
         return "Query{" +
-                "keyword='" + keyword + '\'' +
-                ", minPrice=" + minPrice +
-                ", maxPrice=" + maxPrice +
+                "searchIndex=" + searchIndex +
+                ", keyword='" + keyword + '\'' +
+                ", minPrice='" + minPrice + '\'' +
+                ", maxPrice='" + maxPrice + '\'' +
                 '}';
     }
+
 }

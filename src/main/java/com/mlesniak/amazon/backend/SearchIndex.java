@@ -1,5 +1,8 @@
 package com.mlesniak.amazon.backend;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum SearchIndex {
     Appareal,
     Automotive,
@@ -37,5 +40,9 @@ public enum SearchIndex {
     VHS,
     Video,
     VideoGames,
-    Watches
+    Watches;
+
+    public static List<SearchIndex> asList() {
+        return Arrays.asList(values());
+    }
 }

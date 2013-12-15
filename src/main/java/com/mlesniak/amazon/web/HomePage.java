@@ -3,6 +3,7 @@ package com.mlesniak.amazon.web;
 import com.mlesniak.amazon.backend.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -29,6 +30,7 @@ public class HomePage extends WebPage {
         TextField<String> keyword = new TextField<>("keyword");
         TextField<String> minPrice = new TextField<>("minPrice");
         TextField<String> maxPrice = new TextField<>("maxPrice");
+        DropDownChoice<SearchIndex> searchIndex = new DropDownChoice<>("searchIndex", SearchIndex.asList());
         Form<Query> form = new Form<Query>("form", new CompoundPropertyModel<Query>(query)) {
             @Override
             protected void onSubmit() {
@@ -45,6 +47,7 @@ public class HomePage extends WebPage {
         form.add(keyword);
         form.add(minPrice);
         form.add(maxPrice);
+        form.add(searchIndex);
 
         // Display items, if we already have some.
         RepeatingView repeater = new RepeatingView("repeater");
