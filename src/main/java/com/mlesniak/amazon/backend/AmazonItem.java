@@ -9,12 +9,19 @@ public class AmazonItem implements Serializable {
     private String URL;
     private String imageURL;
 
-    public AmazonItem(String asin, String title, int price, String URL, String imageURL) {
+    private String reviewURL;
+
+    public AmazonItem(String asin, String title, int price, String URL, String imageURL, String reviewURL) {
         this.asin = asin;
         this.title = title;
         this.price = price;
         this.URL = URL;
         this.imageURL = imageURL;
+        this.reviewURL = reviewURL;
+    }
+
+    public String getReviewURL() {
+        return reviewURL;
     }
 
     public String getAsin() {
@@ -38,17 +45,6 @@ public class AmazonItem implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "AmazonItem{" +
-                "asin='" + asin + '\'' +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", URL='" + URL + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -63,5 +59,17 @@ public class AmazonItem implements Serializable {
     @Override
     public int hashCode() {
         return asin.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "AmazonItem{" +
+                "\n  asin='" + asin + '\'' +
+                "\n, title='" + title + '\'' +
+                "\n, price=" + price +
+                "\n, URL=" + URL +
+                "\n, imageURL=" + imageURL +
+                "\n, reviewURL=" + reviewURL +
+                "\n}";
     }
 }

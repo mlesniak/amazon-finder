@@ -21,6 +21,7 @@ public class AmazonItemConverter {
 
         while (request.hasNextPage()) {
             String xml = request.nextPage();
+            System.out.println(Utils.prettyFormatXML(xml, 4));
             amazonItems.addAll(convert(xml));
         }
 
@@ -54,6 +55,7 @@ public class AmazonItemConverter {
         String asin = xpath.compile("./ASIN").evaluate(node);
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));
         String title = xpath.compile("./ItemAttributes/Title").evaluate(node);
+        String reviewURL = toURL(xpath.compile("./CustomerReviews/IFrameURL").evaluate(node));
         String imageURL = toURL(xpath.compile("./MediumImage/URL").evaluate(node));
 
         int price = 0;
@@ -65,7 +67,7 @@ public class AmazonItemConverter {
             return null;
         }
 
-        return new AmazonItem(asin, title, price, detailsURL, imageURL);
+        return new AmazonItem(asin, title, price, detailsURL, imageURL, reviewURL);
     }
 
     private static String toURL(String url) throws UnsupportedEncodingException {
