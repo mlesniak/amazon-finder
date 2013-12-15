@@ -56,7 +56,12 @@ public class AmazonItemConverter {
         String detailsURL = toURL(xpath.compile("./DetailPageURL").evaluate(node));
         String title = xpath.compile("./ItemAttributes/Title").evaluate(node);
         String reviewURL = toURL(xpath.compile("./CustomerReviews/IFrameURL").evaluate(node));
+        boolean hasReviews = Boolean.parseBoolean(xpath.compile("./CustomerReviews/HasReviews").evaluate(node));
         String imageURL = toURL(xpath.compile("./MediumImage/URL").evaluate(node));
+
+        if (!hasReviews) {
+            reviewURL = null;
+        }
 
         int price = 0;
         String strPrice = xpath.compile("./ItemAttributes/ListPrice/Amount").evaluate(node);
